@@ -1,0 +1,103 @@
+<listen_msgWindow>:
+    id: listen_rec_win
+    orientation: "vertical"
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        padding: [mtx.dp(20), 0]
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: rgba('#0e1574ff')
+            Triangle:
+                points: [0,self.size[1],self.size[0],self.size[1],0,self.size[1]-(.4*self.size[1])]
+            Color:
+                rgba: rgba('#0e1574c8')
+            Triangle:
+                points: [0,self.size[1],self.size[0],self.size[1],self.size[0],self.size[1]-(.4*self.size[1])]
+        Widget:
+            size_hint_y: .5
+        Label:
+            text: "What is the message "
+            color: rgba('#0e1574ff')
+            size_hint_y: .1
+        Widget:
+            size_hint_y: .1
+        Label:
+            id: info
+            text: "Press mic to start listening"
+            markup: True
+            color: rgba('#0e1574ff')
+            size_hint_y: .1
+        Widget:
+            size_hint_y: .1
+        Label:
+            id: msg
+            text:""
+            markup: True
+            color: rgba('#0e1574ff')
+            size_hint_y: .1
+        Widget:
+            size_hint_y: .1
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: .3
+            Widget:
+                size_hint_x: .4
+            StrokeButton:
+                text: "mic"
+                size_hint_x: .2
+                size_hint_y: .3
+                canvas.before:
+                    Color:
+                        rgba: rgba('#0e1574ff')
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+                on_release: root.lis_msg()
+            Widget:
+                size_hint_x: .4
+        Widget:
+            size_hint_y: .1
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: .3
+            SmoothButton:
+                text: "prev"
+                size_hint_x: .2
+                size_hint_y: .3
+                canvas.before:
+                    Color:
+                        rgba: rgba('#0e1574ff')
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [18,2,2,18]
+                on_release: root.prev_wind()
+            Widget:
+                size_hint_x: .6
+            SmoothButton:
+                text: "next"
+                size_hint_x: .2
+                size_hint_y: .3
+                canvas.before:
+                    Color:
+                        rgba: rgba('#0e1574ff')
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [2,18,18,2]
+                on_release: root.next_wind()
+
+<StrokeButton@Button>:
+    background_color: (1,1,1,0)
+    background_normal: ''
+
+<SmoothButton@Button>:
+    background_color: (1,1,1,0)
+    background_normal: ''

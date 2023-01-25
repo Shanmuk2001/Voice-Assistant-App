@@ -1,0 +1,107 @@
+#: import mtx kivy.metrics
+<send_mailWindow>:
+    id: send_mail_win
+    orientation: "vertical"
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: rgba('#0e1574ff')
+            Triangle:
+                points: [0,self.size[1],self.size[0],self.size[1],0,self.size[1]-(.4*self.size[1])]
+            Color:
+                rgba: rgba('#0e1574c8')
+            Triangle:
+                points: [0,self.size[1],self.size[0],self.size[1],self.size[0],self.size[1]-(.4*self.size[1])]
+        Widget:
+            size_hint_y: .7
+        Label:
+            id: sender_mail
+            size_hint_y: .1
+            text: ''
+            markup: True
+            color: rgba('#0e1574ff')
+        Widget:
+            size_hint_y: .1
+        Label:
+            id: receiver_mail
+            size_hint_y: .1
+            text: ''
+            markup: True
+            color: rgba('#0e1574ff')
+        Widget:
+            size_hint_y: .1
+        Label:
+            id: msg
+            size_hint_y: .1
+            text: ''
+            markup: True
+            color : rgba('#0e1574ff')
+        Widget:
+            size_hint_y: .1
+        BoxLayout:
+            orientation: "vertical"
+            padding: [mtx.dp(20), 0]
+            FlatInput:
+                id: pwd_field
+                size_hint_y: .1
+                hint_text: "G-mail Password"
+                multiline: False
+                password: True
+                on_text_validate: root.sending_mail()
+            Widget: 
+                size_hint_y: .1
+            Label:
+                id: info
+                text: ''
+                markup: True
+                size_hint_y: .2
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .1
+                FlatButton:
+                    text: "Send Mail"
+                    size_hint_x: .3
+                    size_hint_y: 1
+                    canvas.before:
+                        Color:
+                            rgba: rgba('#0e1574ff')
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [20]
+                    on_release: root.sending_mail()
+                Widget:
+                    size_hint_x: .4
+                FlatButton:
+                    text: "LogOut"
+                    size_hint_x: .3
+                    size_hint_y: 1
+                    canvas.before:
+                        Color:
+                            rgba: rgba('#0e1574ff')
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [20]
+                    on_release: root.log_out()
+
+<FlatInput@TextInput>:
+    background_active: ''
+    background_normal: ''
+    background_color: [1,1,1,0]
+    canvas.before:
+        Color:
+            rgba: rgba('#0e1574ff')
+        Rectangle:
+            pos: self.pos
+            size: [self.size[0] ,1] 
+<FlatButton@Button>:
+    background_normal: ''
+    background_color: [1,1,1,0]

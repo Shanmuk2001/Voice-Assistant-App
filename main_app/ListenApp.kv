@@ -1,0 +1,125 @@
+#: import mtx kivy.metrics
+<listen_receWindow>:
+    id: listen_rec_win
+    orientation: "vertical"
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: rgba('#0e1574ff')
+            Triangle:
+                points: [0,self.size[1],self.size[0],self.size[1],0,self.size[1]-(.2*self.size[1])]
+            Color:
+                rgba: rgba('#0e1574c8')
+            Triangle:
+                points: [0,self.size[1],self.size[0],self.size[1],self.size[0],self.size[1]-(.2*self.size[1])]
+        Widget:
+            size_hint_y: .4
+        Label:
+            text: "To whom do you want to send message"
+            color: rgba('#0e1574ff')
+            size_hint_y: .3
+        BoxLayout:
+            orientation: "vertical"
+            padding: [mtx.dp(20), 0]
+            FlatInput:
+                id: year
+                size_hint_y: .1
+                hint_text: "Year                                            (i.e 1,2,..)"
+                multiline: False
+                focus: True
+                on_text_validate: sec.focus = True
+            Widget:
+                size_hint_y: .155
+            FlatInput:
+                id: sec
+                size_hint_y: .1
+                hint_text: "Section                                       (i.e 1,2,..)"
+                multiline: False
+                focus: True
+                on_text_validate: gen.foucs= True
+            Widget:
+                size_hint_y: .155
+            FlatInput:
+                id: gen
+                size_hint_y: .1
+                hint_text: "Gender                                        (i.e. m/f)"
+                multiline: False
+                on_text_validate: root.lis_rec()
+            Widget:
+                size_hint_y:.16
+        BoxLayout:
+            size_hint_y: .3
+            orientation: 'horizontal'
+            padding: [mtx.dp(20), 0]
+            Widget:
+                size_hint_x: .35
+            FlatButton:
+                text: "Confirm"
+                size_hint_x: .3
+                pos: (200,200)
+                canvas.before:
+                    Color:
+                        rgba: rgba('#0e1574ff')
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [20]
+                on_release: root.lis_rec()
+            Widget:
+                size_hint_x: .35
+        Widget: 
+            size_hint_y: .05
+        Label:
+            id: info
+            size_hint_y: .2
+            text: ""
+            color: rgba('#0e1574ff')
+            markup: True
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: .1
+            FlatButton:
+                text: "prev"
+                size_hint_x: .2
+                canvas.before:
+                    Color:
+                        rgba: rgba('#0e1574ff')
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [18,2,2,18]
+                on_release: root.prev_wind()
+            Widget:
+                size_hint_x: .6
+            FlatButton:
+                text: "next"
+                size_hint_x: .2
+                canvas.before:
+                    Color:
+                        rgba: rgba('#0e1574ff')
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [2,18,18,2]
+                on_release: root.next_wind()
+
+<FlatButton@Button>:
+    background_normal: ''
+    background_color: [1,1,1,0]
+<FlatInput@TextInput>:
+    background_active: ''
+    background_normal: ''
+    background_color: [1,1,1,0]
+    canvas.before:
+        Color:
+            rgba: rgba('#0e1574ff')
+        Rectangle:
+            pos: self.pos
+            size: [self.size[0] ,1] 
